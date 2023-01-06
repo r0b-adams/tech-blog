@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/r0b-adams/tech-blog#readme",
   "dependencies": {
-    "@types/express-session": "^1.17.5",
     "bcrypt": "^5.0.1",
     "connect-session-sequelize": "^7.1.5",
     "dotenv": "^16.0.2",
@@ -34,6 +33,7 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.14",
+    "@types/express-session": "^1.17.5",
     "@types/node": "^18.7.18",
     "nodemon": "^2.0.20",
     "ts-node": "^10.9.1",
