@@ -1,11 +1,17 @@
 import express from "express";
-import controllers from "./controllers";
+import { routes } from "./routes";
+import { db, sessions } from "./services";
+import { SERVER_PORT } from "./config";
 
-const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(controllers);
+app.use(sessions);
+app.use(routes);
 
-app.listen(PORT, () => console.log(`server listening on PORT ${PORT}`));
+app.listen(SERVER_PORT, async () => {
+  const connection = await db.open();
+  console.log(`connected to database ${connection.config.database}`);
+  console.log(`listening on port ${SERVER_PORT}`);
+});
