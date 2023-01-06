@@ -6,7 +6,7 @@ import connect from "connect-session-sequelize";
 const SequelizeStore = connect(session.Store);
 
 export class SessionService {
-  public static useSession(sequelize: Sequelize) {
+  public static useSessions(sequelize: Sequelize) {
     return session({
       store: new SequelizeStore({ db: sequelize }),
       secret: DB_CONFIG.SESSION_SECRET,
