@@ -1,5 +1,6 @@
 import { db } from "../services";
-import { compare } from "bcrypt";
+import { DB_CONFIG } from "../config";
+import { compare, hash } from "bcrypt";
 import {
   Model,
   DataTypes,
@@ -9,13 +10,19 @@ import {
 } from "sequelize";
 
 export class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
-  declare id: CreationOptional<number>;
+  declare id: CreationOptional<string>;
   declare username: string;
   declare email: string;
   declare password: string;
   declare created_at: CreationOptional<Date>;
   declare updated_at: CreationOptional<Date>;
 
+  // static class methods
+  static async hashPassword(password: string) {
+    return await hash(password, DB_CONFIG.HASH_SALT_ROUNDS);
+  }
+
+  // instance methods
   async checkPassword(password: string) {
     return await compare(password, this.password);
   }
@@ -48,10 +55,6 @@ User.init(
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        msg: "password must be at least 8 characters in length",
-        args: [8],
-      },
     },
     created_at: DataTypes.DATE,
     updated_at: DataTypes.DATE,
@@ -63,3 +66,13 @@ User.init(
     updatedAt: "updated_at",
   }
 );
+
+User.beforeCreate(async user => {
+  user.password = await User.hashPassword(user.password);
+});
+
+User.beforeUpdate(async (user, options) => {
+  if (options.fields?.includes("password")) {
+    user.password = await User.hashPassword(user.password);
+  }
+});

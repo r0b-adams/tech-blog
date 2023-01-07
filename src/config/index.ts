@@ -7,5 +7,6 @@ export const DB_CONFIG = {
   DATABASE: process.env.DB_NAME || "",
   USERNAME: process.env.DB_USERNAME || "",
   PASSWORD: process.env.DB_PASSWORD || "",
+  HASH_SALT_ROUNDS: 10,
   SESSION_SECRET: process.env.SESSION_SECRET || "",
 };

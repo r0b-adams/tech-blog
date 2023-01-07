@@ -7,16 +7,19 @@ import {
   CreationOptional,
 } from "sequelize";
 
-export class Post extends Model<InferAttributes<Post>, InferCreationAttributes<Post>> {
+export class Comment extends Model<
+  InferAttributes<Comment>,
+  InferCreationAttributes<Comment>
+> {
   declare id: CreationOptional<string>;
   declare user_id: string;
-  declare title: string;
+  declare post_id: string;
   declare content: string;
   declare created_at: CreationOptional<Date>;
   declare updated_at: CreationOptional<Date>;
 }
 
-Post.init(
+Comment.init(
   {
     id: {
       primaryKey: true,
@@ -25,10 +28,7 @@ Post.init(
       allowNull: false,
     },
     user_id: DataTypes.UUID,
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+    post_id: DataTypes.UUID,
     content: {
       type: DataTypes.STRING,
       allowNull: false,
