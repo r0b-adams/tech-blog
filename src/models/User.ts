@@ -9,7 +9,7 @@ import {
 import bcrypt from "bcrypt";
 
 export class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
-  // table colums
+  // table column type declarations
   declare id: CreationOptional<number>;
   declare username: string;
   declare email: string;
@@ -28,9 +28,12 @@ User.init(
   {
     id: {
       primaryKey: true,
-      type: DataTypes.UUIDV4,
+      type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
+      validate: {
+        isUUID: 4,
+      },
     },
     username: {
       type: DataTypes.STRING,
@@ -51,6 +54,9 @@ User.init(
     password: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        min: 8,
+      },
     },
     created_at: DataTypes.DATE,
     updated_at: DataTypes.DATE,
