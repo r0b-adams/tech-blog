@@ -1,8 +1,22 @@
 import { db } from "../services";
-import { DataTypes } from "sequelize";
+import {
+  Model,
+  DataTypes,
+  InferAttributes,
+  InferCreationAttributes,
+  CreationOptional,
+} from "sequelize";
 
-export const User = db.connection.define(
-  "user",
+interface UserModel
+  extends Model<InferAttributes<UserModel>, InferCreationAttributes<UserModel>> {
+  id: CreationOptional<number>;
+  username: string;
+  email: string;
+  password: string;
+}
+
+export const User = db.connection.define<UserModel>(
+  "User",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -24,8 +38,10 @@ export const User = db.connection.define(
     },
   },
   {
-    freezeTableName: true,
     timestamps: true,
-    underscored: true,
+    // underscored: true seems to be buggy and returns camelCase on create so format manually
+    createdAt: "created_at",
+    updatedAt: "updated_at",
+    deletedAt: "deleted_at",
   }
 );
