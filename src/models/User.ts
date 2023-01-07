@@ -28,9 +28,6 @@ User.init(
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
-      validate: {
-        isUUID: 4,
-      },
     },
     username: {
       type: DataTypes.STRING,
