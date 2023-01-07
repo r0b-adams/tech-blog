@@ -8,7 +8,7 @@ import {
 } from "sequelize";
 
 export class Post extends Model<InferAttributes<Post>, InferCreationAttributes<Post>> {
-  declare id: CreationOptional<number>;
+  declare id: CreationOptional<string>;
   declare user_id: string;
   declare title: string;
   declare content: string;
