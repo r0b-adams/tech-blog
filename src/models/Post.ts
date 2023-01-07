@@ -1,5 +1,4 @@
 import { db } from "../services";
-import { compare } from "bcrypt";
 import {
   Model,
   DataTypes,
@@ -8,53 +7,31 @@ import {
   CreationOptional,
 } from "sequelize";
 
-export class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
+export class Post extends Model<InferAttributes<Post>, InferCreationAttributes<Post>> {
   declare id: CreationOptional<number>;
-  declare username: string;
-  declare email: string;
-  declare password: string;
+  declare user_id: string;
+  declare title: string;
+  declare content: string;
   declare created_at: CreationOptional<Date>;
   declare updated_at: CreationOptional<Date>;
-
-  async checkPassword(password: string) {
-    return await compare(password, this.password);
-  }
 }
 
-User.init(
+Post.init(
   {
     id: {
       primaryKey: true,
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
-      validate: {
-        isUUID: 4,
-      },
     },
-    username: {
+    user_id: DataTypes.UUID,
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
-      validate: {
-        isAlphanumeric: true,
-      },
     },
-    email: {
+    content: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
-      validate: {
-        isEmail: true,
-      },
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        msg: "password must be at least 8 characters in length",
-        args: [8],
-      },
     },
     created_at: DataTypes.DATE,
     updated_at: DataTypes.DATE,
