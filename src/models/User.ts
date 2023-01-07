@@ -1,4 +1,5 @@
 import { db } from "../services";
+import { compare } from "bcrypt";
 import {
   Model,
   DataTypes,
@@ -6,21 +7,17 @@ import {
   InferCreationAttributes,
   CreationOptional,
 } from "sequelize";
-import bcrypt from "bcrypt";
 
 export class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
-  // table column type declarations
   declare id: CreationOptional<number>;
   declare username: string;
   declare email: string;
   declare password: string;
   declare created_at: CreationOptional<Date>;
   declare updated_at: CreationOptional<Date>;
-  declare deleted_at: CreationOptional<Date>;
 
-  // model instance methods
   async checkPassword(password: string) {
-    return await bcrypt.compare(password, this.password);
+    return await compare(password, this.password);
   }
 }
 
@@ -55,18 +52,17 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        min: 8,
+        msg: "password must be at least 8 characters in length",
+        args: [8],
       },
     },
     created_at: DataTypes.DATE,
     updated_at: DataTypes.DATE,
-    deleted_at: DataTypes.DATE,
   },
   {
     sequelize: db.connection,
     timestamps: true,
     createdAt: "created_at",
     updatedAt: "updated_at",
-    deletedAt: "deleted_at",
   }
 );
