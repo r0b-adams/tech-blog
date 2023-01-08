@@ -1,0 +1,1 @@
+export { catchAll } from "./catchAll";
