@@ -1,5 +1,5 @@
 import { Op } from "sequelize";
-import { Post } from "../../../models";
+import { Post, User } from "../../../models";
 
 export class PostController {
   static async createPost(user_id: string, title: string, content: string) {
@@ -14,6 +14,24 @@ export class PostController {
   }
 
   static async deletePost(id: string, user_id: string) {
-    return await Post.destroy({ where: { [Op.and]: [{ id }, { user_id }] } });
+    return await Post.destroy({
+      where: { [Op.and]: [{ id }, { user_id }] },
+    });
+  }
+
+  static async getAllPosts() {
+    return await Post.findAll({
+      order: [["created_at", "DESC"]],
+      attributes: ["id", "title", "content", "created_at"],
+      include: { model: User, attributes: ["username"] },
+    });
+  }
+
+  static async getUserPosts(user_id: string) {
+    return await Post.findAll({
+      where: { user_id },
+      order: [["created_at", "DESC"]],
+      attributes: ["id", "title", "content", "created_at"],
+    });
   }
 }
