@@ -1,10 +1,10 @@
 import { RequestHandler } from "express";
+import { PostController } from "../api/posts/PostController";
 
 export const home: RequestHandler = async (req, res, next) => {
   try {
-    // get all posts
-    // include their user
-    res.status(200).json({ message: "HOMEPAGE VIEW" });
+    const posts = await PostController.getAllPosts();
+    res.status(200).json({ message: "HOMEPAGE VIEW", data: posts });
   } catch (error) {
     next(error);
   }
@@ -12,7 +12,9 @@ export const home: RequestHandler = async (req, res, next) => {
 
 export const dashboard: RequestHandler = async (req, res, next) => {
   try {
-    res.status(200).json({ message: "DASHBOARD VIEW" });
+    const { user_id } = req.session;
+    const posts = await PostController.getUserPosts(user_id!);
+    res.status(200).json({ message: "DASHBOARD VIEW", data: posts });
   } catch (error) {
     next(error);
   }
