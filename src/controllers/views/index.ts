@@ -8,7 +8,6 @@ router.get("/", (req, res) => {
 });
 
 // render a logged-in user's own posts
-// redirect to login if unauthenticated
 router.get("/dashboard", authenticate, (req, res) => {
   res.status(200).json({ message: "DASHBOARD VIEW" });
 });
