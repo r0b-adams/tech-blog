@@ -1,3 +1,4 @@
-export const hello_world = () => {
-  return "Hello, World!";
+export const format_date = (ISO: string) => {
+  const date = new Date(ISO);
+  return date.toLocaleString();
 };
