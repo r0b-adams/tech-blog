@@ -1,10 +1,10 @@
 import { Router } from "express";
 import { apiRoutes } from "./api";
-import { viewRoutes } from "./views";
+import { pageRoutes } from "./pages";
 
 const router = Router();
 
 router.use("/api", apiRoutes);
-router.use(viewRoutes);
+router.use(pageRoutes);
 
 export { router as routes };
