@@ -1,16 +1,19 @@
 import express from "express";
 import { SERVER_PORT } from "./config";
-import { routes } from "./controllers";
 import { db, sessions } from "./services";
-import { errorhandlers } from "./middleware";
+import { setViewEngine } from "./views";
+import { routes } from "./controllers";
+import { errorHandlers } from "./middleware";
 
 const app = express();
 
-app.use(express.json());
+setViewEngine(app);
+
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 app.use(sessions);
 app.use(routes);
-app.use(errorhandlers.catchAll);
+app.use(errorHandlers.catchAll);
 
 app.listen(SERVER_PORT, async () => {
   const connection = await db.open();
