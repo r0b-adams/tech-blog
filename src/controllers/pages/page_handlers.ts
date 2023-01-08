@@ -6,6 +6,7 @@ export const home: RequestHandler = async (req, res, next) => {
     const posts = await PostController.getAllPosts();
     res.render("home", {
       layout: "main",
+      logged_in: req.session.user_id ? true : false,
       posts,
     });
   } catch (error) {
@@ -33,7 +34,10 @@ export const signup: RequestHandler = async (req, res, next) => {
 
 export const login: RequestHandler = async (req, res, next) => {
   try {
-    res.status(200).json({ message: "LOGIN VIEW" });
+    res.render("login", {
+      layout: "main",
+      logged_in: req.session.user_id ? true : false,
+    });
   } catch (error) {
     next(error);
   }
