@@ -4,7 +4,10 @@ import { PostController } from "../api/posts/PostController";
 export const home: RequestHandler = async (req, res, next) => {
   try {
     const posts = await PostController.getAllPosts();
-    res.status(200).json({ message: "HOMEPAGE VIEW", data: posts });
+    res.render("home", {
+      layout: "main",
+      posts,
+    });
   } catch (error) {
     next(error);
   }
