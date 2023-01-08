@@ -8,8 +8,8 @@ export const authenticate: RequestHandler = async (req, res, next) => {
         if (error) {
           throw error;
         }
-        res.redirect("/login");
       });
+      throw new Error("not authorized");
     } else {
       next();
     }
