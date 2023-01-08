@@ -1,2 +1,2 @@
 export * as errorhandlers from "./errors";
-export { authenticate } from "./authenticate";
+export { authorize } from "./authorize";
