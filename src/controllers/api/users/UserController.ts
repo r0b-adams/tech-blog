@@ -1,11 +1,11 @@
 import { User } from "../../../models";
 
 export class UserController {
-  public static async adminFindUserByUsername(username: string) {
+  private static async adminFindUserByUsername(username: string) {
     return await User.findOne({ where: { username } });
   }
 
-  public static async signup(username: string, email: string, password: string) {
+  static async signup(username: string, email: string, password: string) {
     const user = await this.adminFindUserByUsername(username);
     if (user) {
       throw new Error("an account with that username exists");
@@ -13,7 +13,7 @@ export class UserController {
     return await User.create({ username, email, password });
   }
 
-  public static async login(username: string, password: string) {
+  static async login(username: string, password: string) {
     const user = await this.adminFindUserByUsername(username);
     if (!user) {
       throw new Error("wrong username or password");
@@ -25,7 +25,7 @@ export class UserController {
     return user;
   }
 
-  public static async updatePassword(id: string, password: string) {
+  static async updatePassword(id: string, password: string) {
     await User.update({ password }, { where: { id }, individualHooks: true });
   }
 }
