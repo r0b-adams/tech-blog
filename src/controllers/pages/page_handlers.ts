@@ -6,6 +6,7 @@ export const home: RequestHandler = async (req, res, next) => {
     const posts = await PostController.getAllPosts();
     res.render("home", {
       layout: "main",
+      home: true,
       logged_in: req.session.user_id ? true : false,
       posts,
     });
@@ -18,7 +19,12 @@ export const dashboard: RequestHandler = async (req, res, next) => {
   try {
     const { user_id } = req.session;
     const posts = await PostController.getUserPosts(user_id!);
-    res.status(200).json({ message: "DASHBOARD VIEW", data: posts });
+    res.render("dashboard", {
+      layout: "main",
+      dashboard: true,
+      logged_in: req.session.user_id ? true : false,
+      posts,
+    });
   } catch (error) {
     next(error);
   }
@@ -26,7 +32,11 @@ export const dashboard: RequestHandler = async (req, res, next) => {
 
 export const signup: RequestHandler = async (req, res, next) => {
   try {
-    res.status(200).json({ message: "SIGNUP VIEW" });
+    res.render("signup", {
+      layout: "main",
+      signup: true,
+      logged_in: req.session.user_id ? true : false,
+    });
   } catch (error) {
     next(error);
   }
@@ -36,6 +46,7 @@ export const login: RequestHandler = async (req, res, next) => {
   try {
     res.render("login", {
       layout: "main",
+      login: true,
       logged_in: req.session.user_id ? true : false,
     });
   } catch (error) {
