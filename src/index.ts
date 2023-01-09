@@ -1,11 +1,11 @@
 import path from "path";
 import express from "express";
-import { SERVER_PORT } from "./config";
+import { create } from "express-handlebars";
 import { db, sessions } from "./services";
 import { routes } from "./controllers";
 import { errorHandlers } from "./middleware";
 import { viewHelpers as helpers } from "./utils";
-import { create } from "express-handlebars";
+import { SERVER_PORT } from "./config";
 
 const app = express();
 
@@ -15,6 +15,7 @@ app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 app.set("views", path.join(__dirname, "views"));
 
+// use middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
