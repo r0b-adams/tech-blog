@@ -12,7 +12,6 @@ login_form?.addEventListener("submit", async e => {
         password: pw_input.value,
       }),
     });
-
     if (response.ok) {
       window.location.replace("/dashboard");
     } else {
