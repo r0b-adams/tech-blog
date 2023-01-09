@@ -11,21 +11,49 @@
           <h1>bob blog</h1>
         </a>
         <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-          <li>
-            <a href="/" class="nav-link text-white">
-              Home
-            </a>
-          </li>
-          <li>
-            <a href="/dashboard" class="nav-link text-white">
-              Dashboard
-            </a>
-          </li>
-          <li>
-            <a href="/login" class="nav-link text-white">
-              Login
-            </a>
-          </li>
+
+          {{#unless home}}
+            <li>
+              <a href="/" class="nav-link text-white">
+                home
+              </a>
+            </li>
+          {{/unless}}
+
+          {{#if logged_in}}
+            {{#unless dashboard}}
+              <li>
+                <a href="/dashboard" class="nav-link text-white">
+                  dashboard
+                </a>
+              </li>
+            {{/unless}}
+          {{/if}}
+
+          {{#unless logged_in}}
+            {{#unless signup}}
+              <li>
+                <a href="/signup" class="nav-link text-white">
+                  signup
+                </a>
+              </li>
+            {{/unless}}
+
+            {{#unless login}}
+              <li>
+                <a href="/login" class="nav-link text-white">
+                  login
+                </a>
+              </li>
+            {{/unless}}
+          {{/unless}}
+
+          {{#if logged_in}}
+            <li>
+              <button id="logout-btn" type="button" class="btn btn-light">Logout</button>
+            </li>
+          {{/if}}
+
         </ul>
       </div>
     </div>
