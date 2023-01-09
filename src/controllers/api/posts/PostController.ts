@@ -2,6 +2,11 @@ import { Op } from "sequelize";
 import { Post, User } from "../../../models";
 
 export class PostController {
+  static async getPost(id: string) {
+    const post = await Post.findByPk(id);
+    return post?.get({ plain: true });
+  }
+
   static async createPost(user_id: string, title: string, content: string) {
     const post = await Post.create({ user_id, title, content });
     return post.get({ plain: true });
