@@ -8,7 +8,7 @@
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
       crossorigin="anonymous"
     />
-    <title>Bootstrap demo</title>
+    <title>bob blog</title>
   </head>
   <body class="vh-100 d-flex flex-column h">
     {{> header}}
@@ -27,8 +27,14 @@
       crossorigin="anonymous"
     ></script>
 
-    {{#unless logged_in}}
+    {{#if signup}}
+    <script src="/scripts/signup.js"></script>
+    {{/if}}
+    {{#if login}}
     <script src="/scripts/login.js"></script>
-    {{/unless}}
+    {{/if}}
+    {{#if logged_in}}
+    <script src="/scripts/logout.js"></script>
+    {{/if}}
   </body>
 </html>
