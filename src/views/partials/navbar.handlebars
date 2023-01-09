@@ -1,43 +1,45 @@
-<ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-  {{#unless home}}
-    <li>
-      <a href="/" class="nav-link text-white">
-        home
-      </a>
-    </li>
-  {{/unless}}
-
-  {{#if logged_in}}
-    {{#unless page.dashboard}}
+<nav>
+  <ul class="nav col-12 col-lg-auto my-2 my-md-0 text-small">
+    {{#unless home}}
       <li>
-        <a href="/dashboard" class="nav-link text-white">
-          dashboard
-        </a>
-      </li>
-    {{/unless}}
-  {{/if}}
-
-  {{#unless logged_in}}
-    {{#unless page.signup}}
-      <li>
-        <a href="/signup" class="nav-link text-white">
-          signup
+        <a href="/" class="nav-link text-white">
+          home
         </a>
       </li>
     {{/unless}}
 
-    {{#unless page.login}}
-      <li>
-        <a href="/login" class="nav-link text-white">
-          login
-        </a>
-      </li>
-    {{/unless}}
-  {{/unless}}
+    {{#if logged_in}}
+      {{#unless page.dashboard}}
+        <li>
+          <a href="/dashboard" class="nav-link text-white">
+            dashboard
+          </a>
+        </li>
+      {{/unless}}
+    {{/if}}
 
-  {{#if logged_in}}
-    <li>
-      <button id="logout-btn" type="button" class="btn btn-light">Logout</button>
-    </li>
-  {{/if}}
-</ul>
+    {{#unless logged_in}}
+      {{#unless page.signup}}
+        <li>
+          <a href="/signup" class="nav-link text-white">
+            signup
+          </a>
+        </li>
+      {{/unless}}
+
+      {{#unless page.login}}
+        <li>
+          <a href="/login" class="nav-link text-white">
+            login
+          </a>
+        </li>
+      {{/unless}}
+    {{/unless}}
+
+    {{#if logged_in}}
+      <li>
+        <button id="logout-btn" type="button" class="btn btn-light">Logout</button>
+      </li>
+    {{/if}}
+  </ul>
+</nav>
