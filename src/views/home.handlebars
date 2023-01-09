@@ -1,5 +1,9 @@
-<div>
-{{#each posts}}
-  {{> post-item}}
-{{/each}}
-</div>
+<section class="container flex-grow-1">
+  <h2 class="fs-1">home</h2>
+  <h4 class="fs-5">all posts</h4>
+  <div class="d-flex flex-column w-50">
+  {{#each posts}}
+    {{> post-item}}
+  {{/each}}
+  </div>
+</section>

@@ -1,5 +1,9 @@
-<h2>your dashboard</h2>
-<h4>your posts</h4>
-{{#each posts}}
-  {{> post-item}}
-{{/each}}
+<section class="container flex-grow-1">
+  <h2 class="fs-1">your dashboard</h2>
+  <h4 class="fs-5">your posts</h4>
+  <div class="d-flex flex-column w-50">
+  {{#each posts}}
+    {{> post-item}}
+  {{/each}}
+  </div>
+</section>
