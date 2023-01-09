@@ -1,0 +1,5 @@
+{
+  "verbose": false,
+  "ext": "ts,json,hbs,handlebars,css",
+  "ignore": ["dist/**/*"]
+}
