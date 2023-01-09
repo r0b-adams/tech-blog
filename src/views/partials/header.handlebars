@@ -1,60 +1,11 @@
-<header>
+<header class="container">
   <div class="px-3 py-2 text-bg-dark">
-    <div class="container">
+    <div>
       <div
         class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
       >
-        <a
-          href="/"
-          class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none"
-        >
-          <h1>bob blog</h1>
-        </a>
-        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-
-          {{#unless home}}
-            <li>
-              <a href="/" class="nav-link text-white">
-                home
-              </a>
-            </li>
-          {{/unless}}
-
-          {{#if logged_in}}
-            {{#unless dashboard}}
-              <li>
-                <a href="/dashboard" class="nav-link text-white">
-                  dashboard
-                </a>
-              </li>
-            {{/unless}}
-          {{/if}}
-
-          {{#unless logged_in}}
-            {{#unless signup}}
-              <li>
-                <a href="/signup" class="nav-link text-white">
-                  signup
-                </a>
-              </li>
-            {{/unless}}
-
-            {{#unless login}}
-              <li>
-                <a href="/login" class="nav-link text-white">
-                  login
-                </a>
-              </li>
-            {{/unless}}
-          {{/unless}}
-
-          {{#if logged_in}}
-            <li>
-              <button id="logout-btn" type="button" class="btn btn-light">Logout</button>
-            </li>
-          {{/if}}
-
-        </ul>
+        <h1 class="display-1">bob blog</h1>
+        {{> navbar}}
       </div>
     </div>
   </div>
