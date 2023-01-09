@@ -2,20 +2,22 @@ import path from "path";
 import express from "express";
 import { SERVER_PORT } from "./config";
 import { db, sessions } from "./services";
-import { setViewEngine } from "./views";
 import { routes } from "./controllers";
 import { errorHandlers } from "./middleware";
+import { viewHelpers as helpers } from "./utils";
+import { create } from "express-handlebars";
 
 const app = express();
 
-setViewEngine(app);
+// set view engine as handlebars
+const hbs = create({ helpers });
+app.engine("handlebars", hbs.engine);
+app.set("view engine", "handlebars");
+app.set("views", path.join(__dirname, "views"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-const static_url = path.join(__filename, "../public");
-console.log(static_url);
-app.use(express.static(static_url));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(sessions);
 app.use(routes);
 app.use(errorHandlers.catchAll);
