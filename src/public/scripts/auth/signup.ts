@@ -1,4 +1,4 @@
-const signup_form = document.getElementById("signup");
+const signup_form = document.getElementById("signup-form");
 
 signup_form?.addEventListener("submit", async e => {
   const [un_input, em_input, pw_input] = signup_form.querySelectorAll("input");
