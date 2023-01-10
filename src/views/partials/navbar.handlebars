@@ -1,6 +1,6 @@
 <nav>
   <ul class="nav col-12 col-lg-auto my-2 my-md-0 text-small">
-    {{#unless home}}
+    {{#unless view.home}}
       <li>
         <a href="/" class="nav-link text-white">
           home
@@ -9,7 +9,7 @@
     {{/unless}}
 
     {{#if logged_in}}
-      {{#unless page.dashboard}}
+      {{#unless view.dashboard}}
         <li>
           <a href="/dashboard" class="nav-link text-white">
             dashboard
@@ -19,7 +19,7 @@
     {{/if}}
 
     {{#unless logged_in}}
-      {{#unless page.signup}}
+      {{#unless view.signup}}
         <li>
           <a href="/signup" class="nav-link text-white">
             signup
@@ -27,7 +27,7 @@
         </li>
       {{/unless}}
 
-      {{#unless page.login}}
+      {{#unless view.login}}
         <li>
           <a href="/login" class="nav-link text-white">
             login
