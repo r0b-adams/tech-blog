@@ -2,7 +2,7 @@
 
 echo "building app..."
 
-# clean /dist dir
+# clean /dist
 rimraf dist;
 
 # get javascript
@@ -12,7 +12,7 @@ tsc;
 if [ -d "src/views" ]; then
   cp -r src/views dist/views;
 else
-  echo "Error: Directory view folder does not exist."
+  echo "Error: src/views folder does not exist."
 fi
 
 echo "app built!"
