@@ -1,7 +1,7 @@
-const login_form = document.getElementById("login-form");
+const loginForm = document?.getElementById("login-form");
 
-login_form?.addEventListener("submit", async e => {
-  const [un_input, pw_input] = login_form.querySelectorAll("input");
+loginForm?.addEventListener("submit", async e => {
+  const [un_input, pw_input] = loginForm.querySelectorAll("input");
   try {
     e.preventDefault();
     const response = await fetch("/api/users/login", {

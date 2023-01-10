@@ -1,4 +1,4 @@
-const postForm = document.getElementById("new-post-form") as HTMLFormElement;
+const postForm = document?.getElementById("new-post-form") as HTMLFormElement;
 
 postForm?.addEventListener("submit", async e => {
   try {
@@ -9,10 +9,7 @@ postForm?.addEventListener("submit", async e => {
     const response = await fetch("/api/posts/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        title,
-        content,
-      }),
+      body: JSON.stringify({ title, content }),
     });
     if (response.ok) {
       window.location.replace("/dashboard");

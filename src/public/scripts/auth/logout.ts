@@ -1,6 +1,6 @@
-const logout_button = document.getElementById("logout-btn") as HTMLButtonElement;
+const logoutButton = document?.getElementById("logout-btn") as HTMLButtonElement;
 
-logout_button?.addEventListener("click", async e => {
+logoutButton?.addEventListener("click", async _e => {
   try {
     const response = await fetch("/api/users/logout", {
       method: "DELETE",
