@@ -1,5 +1,5 @@
 import { Op } from "sequelize";
-import { Post, User } from "../../../models";
+import { Post, User, Comment } from "../../../models";
 
 export class PostController {
   static async getPost(id: string) {
@@ -29,7 +29,7 @@ export class PostController {
     const posts = await Post.findAll({
       order: [["created_at", "DESC"]],
       attributes: ["id", "title", "content", "created_at"],
-      include: { model: User, attributes: ["username"] },
+      include: [{ model: User, attributes: ["username"] }, Comment],
     });
     return posts.map(model => model.get({ plain: true }));
   }
@@ -39,6 +39,7 @@ export class PostController {
       where: { user_id },
       order: [["created_at", "DESC"]],
       attributes: ["id", "title", "content", "created_at"],
+      include: Comment,
     });
     return posts.map(model => model.get({ plain: true }));
   }
