@@ -26,17 +26,18 @@ Post.init(
     },
     user_id: DataTypes.UUID,
     title: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     content: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     created_at: DataTypes.DATE,
     updated_at: DataTypes.DATE,
   },
   {
+    modelName: "post",
     sequelize: db.connection,
     timestamps: true,
     createdAt: "created_at",

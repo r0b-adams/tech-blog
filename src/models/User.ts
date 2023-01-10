@@ -60,6 +60,7 @@ User.init(
     updated_at: DataTypes.DATE,
   },
   {
+    modelName: "user",
     sequelize: db.connection,
     timestamps: true,
     createdAt: "created_at",
