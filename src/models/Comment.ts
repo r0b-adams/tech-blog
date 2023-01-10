@@ -37,6 +37,7 @@ Comment.init(
     updated_at: DataTypes.DATE,
   },
   {
+    modelName: "comment",
     sequelize: db.connection,
     timestamps: true,
     createdAt: "created_at",
