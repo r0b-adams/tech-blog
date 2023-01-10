@@ -1,0 +1,23 @@
+<div class="w-50 m-auto mt-5">
+  <div>
+    <h2>{{post.title}}</h2>
+    <p>{{post.content}}</p>
+  </div>
+
+  <div class="mt-5">
+    <h4 >comments</h4>
+    {{#if logged_in}}
+      <h5>add a comment</h5>
+      <form id="new-comment-form" data-post-id={{post.id}}>
+        <div class="input-group input-group-lg mb-3">
+          <textarea class="form-control" style="height: 75px; resize:none"></textarea>
+        </div>
+        <button type="submit" class="btn btn-dark" style="width: 125px">
+          comment
+        </button>
+      </form>
+    {{else}}
+      <h6>login to comment</h6>
+    {{/if}}
+  </div>
+</div>
