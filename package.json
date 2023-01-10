@@ -8,10 +8,10 @@
     "start": "if-env NODE_ENV=production && yarn start:prod || yarn start:dev",
     "start:prod": "node dist",
     "start:dev": "nodemon --exec yarn dev",
-    "dev": "./bin/dev_server.sh",
+    "dev": "ts-node src",
+    "seed": "ts-node src/models/seeds",
     "build": "./bin/build.sh",
-    "clean": "rimraf dist",
-    "seed": "ts-node src/models/seeds"
+    "clean": "rimraf dist"
   },
   "repository": {
     "type": "git",
@@ -43,6 +43,7 @@
     "@types/node": "^18.7.18",
     "nodemon": "^2.0.20",
     "ts-node": "^10.9.1",
+    "tslib": "^2.4.1",
     "typescript": "^4.8.3"
   }
 }
