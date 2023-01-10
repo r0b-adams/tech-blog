@@ -3,8 +3,8 @@
     <div class="d-flex align-items-center justify-content-between">
       <h5 class="card-title fs-3">{{title}}</h5>
       <h6 class="card-subtitle mb-2 text-muted">
-        {{#if User.username}}
-          {{User.username}}
+        {{#if user.username}}
+          {{user.username}}
           @
           {{format_date created_at}}
         {{else}}
@@ -13,7 +13,6 @@
       </h6>
     </div>
     <p class="card-text">{{content}}</p>
-    <span>{{num_comments}} comments</span>
     <a href="/posts/{{id}}" class="card-link">view post</a>
   </div>
 </div>
