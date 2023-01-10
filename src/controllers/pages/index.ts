@@ -1,14 +1,15 @@
 import { Router } from "express";
 import { authorize } from "../../middleware";
-import * as pages from "./page_handlers";
+import * as views from "./viewHandlers";
 
 const router = Router();
 
-router.get("/", pages.home);
-router.get("/dashboard", authorize, pages.dashboard);
-router.get("/signup", pages.signup);
-router.get("/login", pages.login);
-router.get("/posts/:post_id", pages.singlePost);
-router.get("*", pages.code404);
+router.get("/", views.home);
+router.get("/dashboard", authorize, views.dashboard);
+router.get("/dashboard/new-post", authorize, views.newPost);
+router.get("/signup", views.signup);
+router.get("/login", views.login);
+router.get("/posts/:post_id", views.singlePost);
+router.get("*", views._404);
 
 export { router as pageRoutes };
