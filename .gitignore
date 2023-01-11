@@ -1,4 +1,4 @@
 .env
 /dist
 /node_modules
-spec.md
+**/public/dev_scripts
