@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { authorize } from "../../../middleware";
-import * as users from "./user_handlers";
+import * as users from "./userHandlers";
 
 // /api/users
 const router = Router();
