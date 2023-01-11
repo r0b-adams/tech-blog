@@ -3,11 +3,11 @@
   <form id="edit-post-form">
     <div class="input-group input-group-lg mb-3">
       <span class="input-group-text" style="width:125px">title</span>
-      <input type="text" class="form-control" />
+      <input value={{post.title}} type="text" class="form-control" />
     </div>
     <div class="input-group input-group-lg mb-3">
       <span class="input-group-text" style="width:125px">content</span>
-      <textarea class="form-control" style="height: 200px"></textarea>
+      <textarea class="form-control" style="height: 200px">{{post.content}}</textarea>
     </div>
     <button type="submit" class="btn btn-dark btn-lg" style="width: 125px">
       edit
