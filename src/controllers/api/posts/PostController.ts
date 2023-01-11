@@ -3,7 +3,24 @@ import { Post, User, Comment } from "../../../models";
 
 export class PostController {
   static async getPost(id: string) {
-    const post = await Post.findByPk(id);
+    const post = await Post.findByPk(id, {
+      include: [
+        {
+          model: User,
+          attributes: ["id", "username"],
+        },
+        {
+          model: Comment,
+          separate: true,
+          order: [["created_at", "DESC"]],
+          include: [
+            {
+              model: User,
+            },
+          ],
+        },
+      ],
+    });
     return post?.get({ plain: true });
   }
 
@@ -29,7 +46,15 @@ export class PostController {
     const posts = await Post.findAll({
       order: [["created_at", "DESC"]],
       attributes: ["id", "title", "content", "created_at"],
-      include: [{ model: User, attributes: ["username"] }, Comment],
+      include: [
+        {
+          model: User,
+          attributes: ["username"],
+        },
+        {
+          model: Comment,
+        },
+      ],
     });
     return posts.map(model => model.get({ plain: true }));
   }
