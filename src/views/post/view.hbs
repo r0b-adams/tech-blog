@@ -5,7 +5,10 @@
   </div>
 
   <div class="mt-5">
-    <h4 >comments</h4>
+    <h4>
+      <span>{{post.comments.length}}</span>
+      comments
+    </h4>
     {{#if logged_in}}
       <h5>add a comment</h5>
       <form id="new-comment-form" data-post-id={{post.id}}>
@@ -19,5 +22,12 @@
     {{else}}
       <h6>login to comment</h6>
     {{/if}}
+    <div>
+      {{#each post.comments as |comment|}}
+        <p>{{comment.content}}</p>
+        <p>{{comment.user.username}}</p>
+        <p>{{format_date comment.created_at}}</p>
+      {{/each}}
+    </div>
   </div>
 </div>
