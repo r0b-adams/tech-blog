@@ -19,11 +19,11 @@ export class User extends Model<InferAttributes<User>, InferCreationAttributes<U
 
   // static class methods
   static async hashPassword(password: string) {
-    return await hash(password, DB_CONFIG.HASH_SALT_ROUNDS);
+    return await hash(password, DB_CONFIG.PASSWORD_HASH_SALT_ROUNDS);
   }
 
   // instance methods
-  async checkPassword(password: string) {
+  async comparePassword(password: string) {
     return await compare(password, this.password);
   }
 }
