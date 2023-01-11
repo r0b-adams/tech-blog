@@ -4,13 +4,12 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "postinstall": "yarn build",
     "start": "if-env NODE_ENV=production && yarn start:prod || yarn start:dev",
     "start:prod": "node dist",
     "start:dev": "nodemon --exec yarn dev",
-    "dev": "ts-node src",
+    "dev": "yarn dev:scripts && ts-node src",
+    "dev:scripts": "tsc src/public/scripts/**/*.ts --skipLibCheck --outdir src/public/dev_scripts",
     "seed": "ts-node src/models/seeds",
-    "build": "./bin/build.sh",
     "clean": "rimraf dist"
   },
   "repository": {
