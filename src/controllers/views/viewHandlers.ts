@@ -8,7 +8,7 @@ export const home: RequestHandler = async (req, res, next) => {
     const posts = await PostController.getAllPosts();
     res.render("home", {
       layout: "main",
-      page: { home: true },
+      view: { home: true },
       logged_in: user_id ? true : false,
       posts,
     });
@@ -37,7 +37,7 @@ export const dashboard: RequestHandler = async (req, res, next) => {
 export const signup: RequestHandler = async (req, res, next) => {
   try {
     const { user_id } = req.session;
-    res.render("signup", {
+    res.render("auth/signup", {
       layout: "main",
       view: { signup: true },
       logged_in: user_id ? true : false,
@@ -51,7 +51,7 @@ export const signup: RequestHandler = async (req, res, next) => {
 export const login: RequestHandler = async (req, res, next) => {
   try {
     const { user_id } = req.session;
-    res.render("login", {
+    res.render("auth/login", {
       layout: "main",
       view: { login: true },
       logged_in: user_id ? true : false,
@@ -67,7 +67,7 @@ export const singlePost: RequestHandler = async (req, res, next) => {
     const { post_id } = req.params;
     const { user_id } = req.session;
     const post = await PostController.getPost(post_id);
-    res.render("post", {
+    res.render("post/view", {
       layout: "main",
       view: { single_post: true },
       logged_in: user_id ? true : false,
@@ -81,11 +81,11 @@ export const singlePost: RequestHandler = async (req, res, next) => {
   }
 };
 
-// /dashboard/new-post
+// /dashboard/post/new
 export const newPost: RequestHandler = async (req, res, next) => {
   try {
     const { user_id } = req.session;
-    res.render("new-post", {
+    res.render("post/new", {
       layout: "main",
       view: { new_post: true },
       logged_in: user_id ? true : false,
@@ -95,9 +95,26 @@ export const newPost: RequestHandler = async (req, res, next) => {
   }
 };
 
+// /dashboard/post/edit
+export const editPost: RequestHandler = async (req, res, next) => {
+  try {
+    const { user_id } = req.session;
+    res.render("post/edit", {
+      layout: "main",
+      view: { edit_post: true },
+      logged_in: user_id ? true : false,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const _404: RequestHandler = async (req, res, next) => {
   try {
-    res.status(200).json({ message: "404 NOT FOUND VIEW" });
+    res.status(404).render("_404", {
+      layout: "main",
+      view: { _404: true },
+    });
   } catch (error) {
     next(error);
   }
