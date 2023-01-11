@@ -18,7 +18,7 @@ export class UserController {
     if (!user) {
       throw new Error("wrong username or password");
     }
-    const validPassword = await user.checkPassword(password);
+    const validPassword = await user.comparePassword(password);
     if (!validPassword) {
       throw new Error("wrong username or password");
     }
