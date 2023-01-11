@@ -95,14 +95,17 @@ export const newPost: RequestHandler = async (req, res, next) => {
   }
 };
 
-// /dashboard/post/edit
+// /dashboard/post/edit/:post_id
 export const editPost: RequestHandler = async (req, res, next) => {
   try {
+    const { post_id } = req.params;
     const { user_id } = req.session;
+    const post = await PostController.getPost(post_id);
     res.render("post/edit", {
       layout: "main",
       view: { edit_post: true },
       logged_in: user_id ? true : false,
+      post,
     });
   } catch (error) {
     next(error);
