@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { authorize } from "../../../middleware";
-import * as posts from "./post_handlers";
+import * as posts from "./postHandlers";
 
 // /api/posts
 const router = Router();

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { authorize } from "../../../middleware";
-import * as comments from "./comment_handlers";
+import * as comments from "./commentHandlers";
 
 // /api/comments
 const router = Router();
