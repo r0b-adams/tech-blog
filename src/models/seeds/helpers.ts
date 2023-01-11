@@ -14,17 +14,17 @@ const lorem = new LoremIpsum({
 export const userData = [
   {
     username: "spongebob",
-    password: "password123",
+    password: "Password123$",
     email: "spongebob@squarepants.com",
   },
   {
     username: "patrick",
-    password: "password123",
+    password: "Password123$",
     email: "patrick@star.com",
   },
   {
     username: "squidward",
-    password: "password123",
+    password: "Password123$",
     email: "squidward@tentacles.com",
   },
 ];
