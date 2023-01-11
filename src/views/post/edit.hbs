@@ -1,6 +1,6 @@
 <div class="w-75 m-auto mt-5">
   <h2>edit post</h2>
-  <form id="edit-post-form">
+  <form id="edit-post-form" data-post_id={{post.id}}>
     <div class="input-group input-group-lg mb-3">
       <span class="input-group-text" style="width:125px">title</span>
       <input value={{post.title}} type="text" class="form-control" />
@@ -11,6 +11,9 @@
     </div>
     <button type="submit" class="btn btn-dark btn-lg" style="width: 125px">
       edit
+    </button>
+    <button id="delete" type="button" class="btn btn-danger btn-lg" style="width: 125px">
+      delete
     </button>
   </form>
 </div>

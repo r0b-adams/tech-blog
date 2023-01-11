@@ -25,6 +25,10 @@
   <script async defer src="/scripts/post/new.js"></script>
 {{/if}}
 
+{{#if view.edit_post}}
+  <script async defer src="/scripts/post/edit.js"></script>
+{{/if}}
+
 {{#if logged_in}}
   <script async defer src="/scripts/auth/logout.js"></script>
 
