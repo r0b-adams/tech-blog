@@ -13,6 +13,9 @@
       </h6>
     </div>
     <p class="card-text">{{content}}</p>
-    <a href="/posts/{{id}}" class="card-link">view post</a>
+    <a href="/posts/{{id}}" class="btn btn-light">view post</a>
+    {{#if @root.view.dashboard}}
+      <a href="/dashboard/edit/{{id}}" class="btn btn-light">edit post</a>
+    {{/if}}
   </div>
 </div>
