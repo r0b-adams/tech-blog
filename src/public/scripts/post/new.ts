@@ -2,7 +2,7 @@ const postForm = document?.getElementById("new-post-form") as HTMLFormElement;
 postForm?.addEventListener("submit", async e => {
   try {
     e.preventDefault();
-    const [titleInput, contentTextarea] = postForm.elements;
+    const [titleInput, contentTextarea] = Array.from(postForm.elements);
     const title = (titleInput as HTMLInputElement).value;
     const content = (contentTextarea as HTMLTextAreaElement).value;
     if (title && content) {
