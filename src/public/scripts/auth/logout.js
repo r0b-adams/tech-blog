@@ -1,4 +1,4 @@
-const logoutButton = document?.getElementById("logout-btn") as HTMLButtonElement;
+const logoutButton = document?.getElementById("logout-btn")
 
 logoutButton?.addEventListener("click", async _e => {
   try {
