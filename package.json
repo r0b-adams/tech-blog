@@ -7,8 +7,8 @@
     "start": "if-env NODE_ENV=production && yarn start:prod || yarn start:dev",
     "start:prod": "node dist",
     "start:dev": "nodemon --exec yarn dev",
-    "dev": "yarn dev:scripts && ts-node src",
-    "dev:scripts": "tsc src/public/scripts/**/*.ts --skipLibCheck --outdir src/public/dev_scripts",
+    "dev": "ts-node src",
+    "dev:scripts": "tsc src/public/scripts/**/*.ts --skipLibCheck --noEmitHelpers --outdir src/public/dev_scripts",
     "seed": "ts-node src/models/seeds",
     "clean": "rimraf dist"
   },
@@ -33,7 +33,8 @@
     "if-env": "^1.0.4",
     "lorem-ipsum": "^2.0.8",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.23.0"
+    "sequelize": "^6.23.0",
+    "socket.io": "^4.5.4"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
