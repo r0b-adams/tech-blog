@@ -4,7 +4,7 @@ commentForm?.addEventListener("submit", async e => {
   try {
     e.preventDefault();
     const contentTextArea = commentForm.querySelector("textarea");
-    const content = (contentTextArea as HTMLTextAreaElement).value;
+    const content = contentTextArea.value;
     const response = await fetch("/api/comments", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

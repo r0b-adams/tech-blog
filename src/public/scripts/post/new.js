@@ -1,10 +1,10 @@
-const newPostForm = document?.getElementById("new-post-form") as HTMLFormElement;
+const newPostForm = document?.getElementById("new-post-form");
 newPostForm?.addEventListener("submit", async e => {
   try {
     e.preventDefault();
     const [titleInput, contentTextarea] = Array.from(newPostForm.elements);
-    const title = (titleInput as HTMLInputElement).value;
-    const content = (contentTextarea as HTMLTextAreaElement).value;
+    const title = titleInput.value;
+    const content = contentTextarea.value;
     if (title && content) {
       const response = await fetch("/api/posts/", {
         method: "POST",

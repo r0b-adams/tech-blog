@@ -1,5 +1,5 @@
-const deleteBtn = document?.querySelector("button#delete") as HTMLButtonElement;
-const editPostForm = document?.getElementById("edit-post-form") as HTMLFormElement;
+const deleteBtn = document?.querySelector("button#delete");
+const editPostForm = document?.getElementById("edit-post-form");
 deleteBtn?.addEventListener("click", async e => {
   try {
     const post_id = editPostForm.dataset.post_id;
@@ -22,8 +22,8 @@ editPostForm?.addEventListener("submit", async e => {
     e.preventDefault();
     const post_id = editPostForm.dataset.post_id;
     const [titleInput, contentTextarea] = Array.from(editPostForm.elements);
-    const title = (titleInput as HTMLInputElement).value;
-    const content = (contentTextarea as HTMLTextAreaElement).value;
+    const title = titleInput.value;
+    const content = contentTextarea.value;
     if (title && content) {
       const response = await fetch(`/api/posts/${post_id}`, {
         method: "PUT",
