@@ -21,7 +21,10 @@ export class PostController {
         },
       ],
     });
-    return post?.get({ plain: true });
+    if (post) {
+      return post.get({ plain: true });
+    }
+    throw new Error("post not found");
   }
 
   static async createPost(user_id: string, title: string, content: string) {
