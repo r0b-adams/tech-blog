@@ -1,10 +1,8 @@
 import path from "path";
-import http from "http";
 import express from "express";
-import { Server } from "socket.io";
 import { engine } from "express-handlebars";
-import { db, sessions } from "./services";
 import { routes } from "./controllers";
+import { db, sessions } from "./services";
 import { errorHandlers } from "./middleware";
 import { viewHelpers as helpers } from "./utils";
 import { SERVER_PORT } from "./config";
@@ -22,10 +20,7 @@ app.use(sessions);
 app.use(routes);
 app.use(errorHandlers.catchAll);
 
-const server = http.createServer(app);
-const io = new Server(server);
-
-server.listen(SERVER_PORT, async () => {
+app.listen(SERVER_PORT, async () => {
   const connection = await db.open();
   await connection.sync({ force: false });
   console.log(`connected to database ${connection.config.database}`);
